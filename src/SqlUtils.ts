@@ -11,8 +11,8 @@ export default class SqlUtils {
         let sqlCmdError = '';
         try {
             core.debug(`Validating if client '${process.env.computername}' has access to Sql Server '${serverName}'.`);
-            core.debug(`"${sqlCmdPath}" -S ${serverName} -U "${connectionString.userId}" -d "${connectionString.database} -Q "select getdate()"`);
-            await exec.exec(`"${sqlCmdPath}" -S ${serverName} -U "${connectionString.userId}" -P "${connectionString.password}" -d "${connectionString.database} "-Q "select getdate()"`, [], {
+            core.debug(`"${sqlCmdPath}" -S ${serverName} -U "${connectionString.userId}" -d "${connectionString.database}" -Q "select getdate()"`);
+            await exec.exec(`"${sqlCmdPath}" -S ${serverName} -U "${connectionString.userId}" -P "${connectionString.password}" -d "${connectionString.database}" -Q "select getdate()"`, [], {
                 silent: true,
                 listeners: {
                     stderr: (data: Buffer) => sqlCmdError += data.toString()
