@@ -8,10 +8,7 @@ on:
 jobs:
   build_test_job:
     name: 'Build and test job'
-    runs-on: ${{ matrix.os }}
-    strategy:
-        matrix:
-          os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ubuntu-latest
     steps:
 
     - name: 'Checking out repo code'
@@ -28,5 +25,7 @@ jobs:
 
     - name: Commit report
       run: |
+        git config --global user.email "aherman@insight2profit.com"
+        git config --global user.name "CI Pipeline"
         git commit -am "Build Typescript"
         git push
